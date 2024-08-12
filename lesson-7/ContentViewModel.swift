@@ -17,7 +17,6 @@ final class ContentViewModel: Combiner, ObservableObject {
     private let authService: AuthAPIServiceContainable = AuthAPIService()
     private let apiService: CurrentWeaherContainable = WeatherAPIService()
     private let locationManager: LocationServiceProtocol = LocationService()
-    private var keychainManager: KeychainManagerProtocol = KeychainManager()
     
     var cancellables: Set<AnyCancellable> = .init()
     
@@ -58,8 +57,8 @@ private extension ContentViewModel {
         input.onAppear
             .first()
             .merge(with: input.onReload)
-            .filter { [unowned self] in
-                self.keychainManager.token.isNotNilOrEmpty
+            .filter {
+                KeychainManager.shared.token.isNotNilOrEmpty
             }
             .sink { [weak self] in
                 self?.onAuthComplete.send()
@@ -69,8 +68,8 @@ private extension ContentViewModel {
         let request = input.onAppear
             .first()
             .merge(with: input.onReload)
-            .filter { [unowned self] in
-                !self.keychainManager.token.isNotNilOrEmpty
+            .filter {
+                !KeychainManager.shared.token.isNotNilOrEmpty
             }
             .map { [unowned self] in
                 self.authService.postToken().materialize()
@@ -83,7 +82,7 @@ private extension ContentViewModel {
             .values()
             .print()
             .sink { [weak self] in
-                self?.keychainManager.token = $0.accessToken
+                KeychainManager.shared.token = $0.accessToken
                 self?.onAuthComplete.send()
             }
             .store(in: &cancellables)

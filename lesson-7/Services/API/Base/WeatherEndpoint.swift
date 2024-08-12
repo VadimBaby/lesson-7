@@ -47,7 +47,7 @@ enum WeatherEndpoint: TargetType {
         var headers = [String : String]()
         headers["Content-Type"] = "application/json"
         
-        if let token = KeychainManager().token {
+        if let token = KeychainManager.shared.token {
             headers["Authorization"] = "Bearer \(token)"
         }
         

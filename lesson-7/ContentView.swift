@@ -115,16 +115,3 @@ private extension ContentView {
 #Preview {
     ContentView()
 }
-
-/*
- let time: String
- let temperature: Int
- let feelsLikeTemp: Double
- let windSpeed: Double
- let symbolPhrase: String
- let symbol: String
- let relHumidity: Double
- let windDirString: String
- let pressure: Double
- let visibility: Int
- */

@@ -16,6 +16,10 @@ enum KeychainKey: String {
 }
 
 final class KeychainManager: KeychainManagerProtocol  {
+    
+    static var shared = KeychainManager()
+    private init() {}
+    
     var token: String? {
         get {
             guard let tokenData = get(forKey: .token) else { return nil }
