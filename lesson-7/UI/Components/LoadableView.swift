@@ -31,8 +31,7 @@ struct LoadableView<Content: View>: View {
                 content()
                     .transition(.move(edge: .top))
             case .loading:
-                ProgressView()
-                    .circlesProgressView()
+                LoadingView()
                     .transition(
                         .asymmetric(
                             insertion: .opacity,

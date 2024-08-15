@@ -7,8 +7,12 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @StateObject private var viewModel = ContentViewModel()
+struct MainView: View {
+    @StateObject private var viewModel: MainViewModel
+    
+    init(viewModel: MainViewModel) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         LoadableView(
@@ -20,7 +24,7 @@ struct ContentView: View {
     }
 }
 
-private extension ContentView {
+private extension MainView {
     @ViewBuilder
     func content() -> some View {
         VStack(spacing: 30) {
@@ -28,12 +32,38 @@ private extension ContentView {
             weatherCardsView
             
             Spacer()
+            
+            Button(
+                send: viewModel.input.onButtonPress,
+                with: .what,
+                isSoundOn: viewModel.output.settings.soundOnPressButton
+            ) {
+                Text("Выбрать город")
+                    .foregroundStyle(Color.primary)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Material.ultraThin)
+                    .clipShape(.rect(cornerRadius: 15))
+            }
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal)
-        .background {
-            gradientBackground().ignoresSafeArea()
+        .gradientBackground(
+            start: viewModel.output.settings.startGradientColor,
+            end: viewModel.output.settings.endGradientColor
+        )
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(
+                    send: viewModel.input.onGearPress,
+                    with: .what,
+                    isSoundOn: viewModel.output.settings.soundOnPressButton
+                ) {
+                    Image(systemName: "gear")
+                        .foregroundStyle(Color.black)
+                }
+            }
         }
     }
     
@@ -101,17 +131,17 @@ private extension ContentView {
         .background(Material.thin)
         .clipShape(.rect(cornerRadius: 15))
     }
-    
-    @ViewBuilder
-    func gradientBackground() -> LinearGradient {
-        LinearGradient(
-            colors: [.startGradient, .endGradient],
-            startPoint: .top,
-            endPoint: .bottom
-        )
-    }
 }
 
 #Preview {
-    ContentView()
+    NavigationView {
+        MainView(viewModel: .init(
+            citySelected: .init(nil),
+            authService: AuthAPIService(),
+            apiService: WeatherAPIService(),
+            locationService: LocationService(),
+            globalSettings: GlobalSettings(),
+            router: nil)
+        )
+    }
 }
