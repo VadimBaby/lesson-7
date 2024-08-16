@@ -9,21 +9,41 @@ import Foundation
 import Combine
 import Moya
 import CombineExt
+import SwiftUI
 
-final class ContentViewModel: Combiner, ObservableObject {
+final class MainViewModel: Combiner, ObservableObject {
     let input: Input
     @Published var output: Output
     
-    private let authService: AuthAPIServiceContainable = AuthAPIService()
-    private let apiService: CurrentWeaherContainable = WeatherAPIService()
-    private let locationManager: LocationServiceProtocol = LocationService()
+    private let authService: AuthAPIServiceContainable
+    private let apiService: CurrentWeaherContainable
+    private let locationService: LocationServiceProtocol
+    private var settingsService: SettingsService
+    private weak var router: MainViewRouter? = nil
     
     var cancellables: Set<AnyCancellable> = .init()
+    
+    // MARK: - External
+    private let citySelected: CurrentValueSubject<Location?, Never>
     
     // MARK: - Helpers
     private let onAuthComplete = PassthroughSubject<Void, Never>()
     
-    init() {
+    init(
+        citySelected: CurrentValueSubject<Location?, Never>,
+        authService: AuthAPIServiceContainable,
+        apiService: CurrentWeaherContainable,
+        locationService: LocationServiceProtocol,
+        settingsService: SettingsService,
+        router: MainViewRouter?
+    ) {
+        self.citySelected = citySelected
+        self.router = router
+        self.authService = authService
+        self.apiService = apiService
+        self.locationService = locationService
+        self.settingsService = settingsService
+        
         self.input = Input()
         self.output = Output()
         
@@ -31,7 +51,7 @@ final class ContentViewModel: Combiner, ObservableObject {
     }
 }
 
-private extension ContentViewModel {
+private extension MainViewModel {
     func bind() {
         input.onAppear
             .first()
@@ -43,12 +63,13 @@ private extension ContentViewModel {
         
         onAuthComplete
             .sink { [weak self] in
-                self?.locationManager.requestLocation()
+                self?.locationService.requestLocation()
             }
             .store(in: &cancellables)
         
         bindAuth()
         bindWeather()
+        bindNavigation()
     }
     
     // MARK: - Auth
@@ -98,14 +119,24 @@ private extension ContentViewModel {
     // MARK: - Weather
     
     func bindWeather() {
-        let weatherRequest = locationManager.currentLocation
-            .dropFirst()
-            .zip(onAuthComplete)
-            .print()
-            .map { $0.0 }
+        input.onAppear
+            .sink {
+                print("on appear")
+            }
+            .store(in: &cancellables)
+        
+        let weatherRequest = locationService.currentLocation
+            .combineLatest(citySelected)
+            .map {
+                guard $0.1 != nil else { return $0.0 }
+                
+                return $0.1?.coordinate
+            }
             .compactMap{ $0 }
+            .combineLatest(onAuthComplete)
+            .print()
+            .map(\.0)
             .map { [unowned self] location in
-                print("location: \(location)")
                 return self.apiService.getCurrentWeather(location: location)
                     .materialize()
             }
@@ -128,13 +159,45 @@ private extension ContentViewModel {
                 self?.output.contentState = .error(message: error.localizedDescription)
             }
             .store(in: &cancellables)
+        
+        settingsService.$temperatureUnit
+            .removeDuplicates()
+            .zip(input.onSettingsDisappear)
+            .mapToVoid()
+            .sink { [weak self] in
+                self?.onAuthComplete.send()
+            }
+            .store(in: &cancellables)
+    }
+    
+    // MARK: - Navigation
+    
+    func bindNavigation() {
+        input.onButtonPress
+            .sink { [weak self] in
+                self?.router?.routeToCities()
+            }
+            .store(in: &cancellables)
+        
+        input.onGearPress
+            .sink { [weak self] in
+                guard let safeSelf = self else { return }
+                
+                safeSelf.router?.routeToSettings { [weak self] in
+                    self?.input.onSettingsDisappear.send()
+                }
+            }
+            .store(in: &cancellables)
     }
 }
 
-extension ContentViewModel {
+extension MainViewModel {
     struct Input {
         let onAppear = PassthroughSubject<Void, Never>()
         let onReload = PassthroughSubject<Void, Never>()
+        let onButtonPress = PassthroughSubject<Void, Never>()
+        let onGearPress = PassthroughSubject<Void, Never>()
+        let onSettingsDisappear = PassthroughSubject<Void, Never>()
     }
     
     struct Output {

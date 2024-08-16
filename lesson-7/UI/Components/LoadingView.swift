@@ -1,17 +1,16 @@
 //
-//  CirclesProgressViewStyle.swift
+//  LoadingView.swift
 //  lesson-7
 //
-//  Created by Вадим Мартыненко on 09.08.2024.
+//  Created by Вадим Мартыненко on 14.08.2024.
 //
 
 import SwiftUI
 
-struct CirclesProgressViewStyle: ProgressViewStyle {
-    
+struct LoadingView: View {
     @State private var isAnimating = false
     
-    func makeBody(configuration: Configuration) -> some View {
+    var body: some View {
         HStack(spacing: 14) {
             ForEach(0..<3) { index in
                 Rectangle()
@@ -27,6 +26,7 @@ struct CirclesProgressViewStyle: ProgressViewStyle {
                     )
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear {
             isAnimating = true
         }
@@ -34,6 +34,5 @@ struct CirclesProgressViewStyle: ProgressViewStyle {
 }
 
 #Preview {
-    ProgressView()
-        .progressViewStyle(CirclesProgressViewStyle())
+    LoadingView()
 }

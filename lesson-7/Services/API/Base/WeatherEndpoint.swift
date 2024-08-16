@@ -9,10 +9,6 @@ import Foundation
 import Moya
 import CoreLocation
 
-enum ResponseLanguage: String {
-    case ru, en
-}
-
 enum WeatherEndpoint: TargetType {
     case current(location: CLLocationCoordinate2D)
     case daily(location: CLLocationCoordinate2D)
@@ -37,8 +33,13 @@ enum WeatherEndpoint: TargetType {
     var method: Moya.Method { .get }
     
     var task: Moya.Task {
-        .requestParameters(
-            parameters: ["lang" : language.rawValue],
+        let temperatureUnit = UserStorage.shared.temperatureUnit
+        
+        return .requestParameters(
+            parameters: [
+                "tempunit": temperatureUnit.unit,
+                "lang" : language.rawValue
+            ],
             encoding: URLEncoding.default
         )
     }
