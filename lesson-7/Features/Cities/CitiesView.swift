@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct CitiesView: View {
-    
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var settings: SettingsService
     
     @StateObject private var viewModel: CitiesViewModel
     
@@ -35,8 +34,8 @@ struct CitiesView: View {
             Spacer()
         }
         .gradientBackground(
-            start: viewModel.output.settings.startGradientColor,
-            end: viewModel.output.settings.endGradientColor
+            start: settings.startGradientColor,
+            end: settings.endGradientColor
         )
         .ignoresSafeArea()
     }
@@ -80,7 +79,7 @@ private extension CitiesView {
     CitiesView(viewModel: .init(
         citySelected: .init(nil),
         locationService: LocationService(),
-        globalSettings: .init(),
         router: nil)
     )
+    .environmentObject(SettingsService())
 }

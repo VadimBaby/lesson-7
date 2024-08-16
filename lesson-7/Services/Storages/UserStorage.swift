@@ -17,29 +17,25 @@ final class UserStorage {
     
     private let storage: UserDefaults = .standard
     
-    var startGradientColor: Color? {
+    var startGradientColor: Color {
         get {
-            guard let uiColor = storage.color(forKey: UserStorageKey.startGradientColor.rawValue) else { return nil }
+            guard let uiColor = storage.color(forKey: UserStorageKey.startGradientColor.rawValue) else { return .startGradient }
             
             return Color(uiColor: uiColor)
         }
         set {
-            guard let color = newValue else { return }
-            
-            storage.setColor(UIColor(color), forKey: UserStorageKey.startGradientColor.rawValue)
+            storage.setColor(UIColor(newValue), forKey: UserStorageKey.startGradientColor.rawValue)
         }
     }
     
-    var endGradientColor: Color? {
+    var endGradientColor: Color {
         get {
-            guard let uiColor = storage.color(forKey: UserStorageKey.endGradientColor.rawValue) else { return nil }
+            guard let uiColor = storage.color(forKey: UserStorageKey.endGradientColor.rawValue) else { return .endGradient }
             
             return Color(uiColor: uiColor)
         }
         set {
-            guard let color = newValue else { return }
-            
-            storage.setColor(UIColor(color), forKey: UserStorageKey.endGradientColor.rawValue)
+            storage.setColor(UIColor(newValue), forKey: UserStorageKey.endGradientColor.rawValue)
         }
     }
     

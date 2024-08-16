@@ -18,6 +18,7 @@ final class MainViewModel: Combiner, ObservableObject {
     private let authService: AuthAPIServiceContainable
     private let apiService: CurrentWeaherContainable
     private let locationService: LocationServiceProtocol
+    private var settingsService: SettingsService
     private weak var router: MainViewRouter? = nil
     
     var cancellables: Set<AnyCancellable> = .init()
@@ -28,16 +29,12 @@ final class MainViewModel: Combiner, ObservableObject {
     // MARK: - Helpers
     private let onAuthComplete = PassthroughSubject<Void, Never>()
     
-    // MARK: - GlobalSettings
-    
-    private let globalSettings: GlobalSettings
-    
     init(
         citySelected: CurrentValueSubject<Location?, Never>,
         authService: AuthAPIServiceContainable,
         apiService: CurrentWeaherContainable,
         locationService: LocationServiceProtocol,
-        globalSettings: GlobalSettings,
+        settingsService: SettingsService,
         router: MainViewRouter?
     ) {
         self.citySelected = citySelected
@@ -45,10 +42,10 @@ final class MainViewModel: Combiner, ObservableObject {
         self.authService = authService
         self.apiService = apiService
         self.locationService = locationService
-        self.globalSettings = globalSettings
+        self.settingsService = settingsService
         
         self.input = Input()
-        self.output = Output(globalSettings: globalSettings)
+        self.output = Output()
         
         bind()
     }
@@ -73,7 +70,6 @@ private extension MainViewModel {
         bindAuth()
         bindWeather()
         bindNavigation()
-        bindSettings()
     }
     
     // MARK: - Auth
@@ -123,6 +119,12 @@ private extension MainViewModel {
     // MARK: - Weather
     
     func bindWeather() {
+        input.onAppear
+            .sink {
+                print("on appear")
+            }
+            .store(in: &cancellables)
+        
         let weatherRequest = locationService.currentLocation
             .combineLatest(citySelected)
             .map {
@@ -157,6 +159,15 @@ private extension MainViewModel {
                 self?.output.contentState = .error(message: error.localizedDescription)
             }
             .store(in: &cancellables)
+        
+        settingsService.$temperatureUnit
+            .removeDuplicates()
+            .zip(input.onSettingsDisappear)
+            .mapToVoid()
+            .sink { [weak self] in
+                self?.onAuthComplete.send()
+            }
+            .store(in: &cancellables)
     }
     
     // MARK: - Navigation
@@ -170,37 +181,11 @@ private extension MainViewModel {
         
         input.onGearPress
             .sink { [weak self] in
-                self?.router?.routeToSettings()
-            }
-            .store(in: &cancellables)
-    }
-    
-    // MARK: - Settings
-    
-    func bindSettings() {
-        globalSettings.startGradientColor
-            .sink { [weak self] color in
-                self?.output.settings.startGradientColor = color
-            }
-            .store(in: &cancellables)
-        
-        globalSettings.endGradientColor
-            .sink { [weak self] color in
-                self?.output.settings.endGradientColor = color
-            }
-            .store(in: &cancellables)
-        
-        globalSettings.soundOnPressButton
-            .sink { [weak self] value in
-                self?.output.settings.soundOnPressButton = value
-            }
-            .store(in: &cancellables)
-        
-        globalSettings.temperatureUnit
-            .removeDuplicates()
-            .mapToVoid()
-            .sink { [weak self] in
-                self?.onAuthComplete.send()
+                guard let safeSelf = self else { return }
+                
+                safeSelf.router?.routeToSettings { [weak self] in
+                    self?.input.onSettingsDisappear.send()
+                }
             }
             .store(in: &cancellables)
     }
@@ -212,25 +197,11 @@ extension MainViewModel {
         let onReload = PassthroughSubject<Void, Never>()
         let onButtonPress = PassthroughSubject<Void, Never>()
         let onGearPress = PassthroughSubject<Void, Never>()
+        let onSettingsDisappear = PassthroughSubject<Void, Never>()
     }
     
     struct Output {
         var contentState: LoadableViewState = .loading
         var model: CurrentWeather = .empty
-        var settings: Settings
-        
-        init(globalSettings: GlobalSettings) {
-            self.settings = .init(
-                startGradientColor: globalSettings.startGradientColor.value,
-                endGradientColor: globalSettings.endGradientColor.value,
-                soundOnPressButton: globalSettings.soundOnPressButton.value
-            )
-        }
-    }
-    
-    struct Settings {
-        var startGradientColor: Color
-        var endGradientColor: Color
-        var soundOnPressButton: Bool
     }
 }

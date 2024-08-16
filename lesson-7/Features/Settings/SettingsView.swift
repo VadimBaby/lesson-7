@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var settings: SettingsService
     
     @StateObject private var viewModel: SettingsViewModel
     
@@ -23,15 +23,16 @@ struct SettingsView: View {
             headerSection
             
             VStack(spacing: 15) {
-                ColorPicker("Pick First Color", selection: $viewModel.output.startGradientColor)
-                ColorPicker("Pick Second Color", selection: $viewModel.output.endGradientColor)
+                TextField("place", text: $settings.text)
+                ColorPicker("Pick First Color", selection: $settings.startGradientColor)
+                ColorPicker("Pick Second Color", selection: $settings.endGradientColor)
                 
-                Toggle("Sound", isOn: $viewModel.output.soundOnPressButtonToggle)
+                Toggle("Sound", isOn: $settings.soundOnPressButton)
                 
                 VStack(alignment: .leading) {
                     Text("Temperature Unit:")
                     
-                    Picker("Temperature Unit", selection: $viewModel.output.temperatureUnit) {
+                    Picker("Temperature Unit", selection: $settings.temperatureUnit) {
                         ForEach(TemperatureUnit.allCases, id: \.rawValue) { temperatureUnit in
                             Text(temperatureUnit.title)
                                 .tag(temperatureUnit)
@@ -47,8 +48,8 @@ struct SettingsView: View {
         .font(20, weight: .medium)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .gradientBackground(
-            start: viewModel.output.startGradientColor,
-            end: viewModel.output.endGradientColor
+            start: settings.startGradientColor,
+            end: settings.endGradientColor
         )
     }
 }
@@ -65,9 +66,9 @@ private extension SettingsView {
                 .frame(maxWidth: .infinity, alignment: .center)
             
             Button(
-                dismiss: dismiss,
+                send: viewModel.input.goBack,
                 with: .what,
-                isSoundOn: viewModel.output.soundOnPressButtonToggle
+                isSoundOn: settings.soundOnPressButton
             ) {
                 Image(systemName: "xmark")
                     .resizable()
@@ -80,5 +81,6 @@ private extension SettingsView {
 }
 
 #Preview {
-    SettingsView(viewModel: .init(globalSettings: GlobalSettings()))
+    SettingsView(viewModel: .init(router: nil))
+        .environmentObject(SettingsService())
 }

@@ -12,6 +12,8 @@
 		2C1E52F42C6E0FF30039AFBD /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E52F32C6E0FF30039AFBD /* TemperatureUnit.swift */; };
 		2C1F46FB2C6D0E1C006C9C40 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F46FA2C6D0E1C006C9C40 /* View.swift */; };
 		2C1F46FD2C6D1363006C9C40 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F46FC2C6D1363006C9C40 /* LoadingView.swift */; };
+		2C42714D2C6F50D200B99417 /* SettingsRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C42714C2C6F50D200B99417 /* SettingsRouterView.swift */; };
+		2C4271502C6F521300B99417 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C42714F2C6F521300B99417 /* SettingsService.swift */; };
 		2CA5F9B32C6CDC9500F443DD /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5F9B22C6CDC9500F443DD /* DependencyContainer.swift */; };
 		2CA5F9B52C6CDCA700F443DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5F9B42C6CDCA700F443DD /* AppDelegate.swift */; };
 		2CA5F9B72C6CDE1C00F443DD /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5F9B62C6CDE1C00F443DD /* Location.swift */; };
@@ -58,7 +60,6 @@
 		2CB6AA132C6DB9B200530EA4 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6AA122C6DB9B200530EA4 /* SettingsViewModel.swift */; };
 		2CB6AA152C6DD73A00530EA4 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6AA142C6DD73A00530EA4 /* UserStorage.swift */; };
 		2CB6AA172C6DD7B400530EA4 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6AA162C6DD7B400530EA4 /* UserDefaults.swift */; };
-		2CB6AA192C6DDCDD00530EA4 /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6AA182C6DDCDD00530EA4 /* GlobalSettings.swift */; };
 		2CB6AA1C2C6DEA9700530EA4 /* what.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2CB6AA1B2C6DEA9700530EA4 /* what.mp3 */; };
 		2CB6AA1F2C6DEC2C00530EA4 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6AA1E2C6DEC2C00530EA4 /* AudioPlayer.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,8 @@
 		2C1E52F32C6E0FF30039AFBD /* TemperatureUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnit.swift; sourceTree = "<group>"; };
 		2C1F46FA2C6D0E1C006C9C40 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		2C1F46FC2C6D1363006C9C40 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		2C42714C2C6F50D200B99417 /* SettingsRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouterView.swift; sourceTree = "<group>"; };
+		2C42714F2C6F521300B99417 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		2CA5F9B22C6CDC9500F443DD /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		2CA5F9B42C6CDCA700F443DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CA5F9B62C6CDE1C00F443DD /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -111,7 +114,6 @@
 		2CB6AA122C6DB9B200530EA4 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		2CB6AA142C6DD73A00530EA4 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		2CB6AA162C6DD7B400530EA4 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		2CB6AA182C6DDCDD00530EA4 /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
 		2CB6AA1B2C6DEA9700530EA4 /* what.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = what.mp3; sourceTree = "<group>"; };
 		2CB6AA1E2C6DEC2C00530EA4 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,14 @@
 				2C1E52F32C6E0FF30039AFBD /* TemperatureUnit.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		2C42714E2C6F520500B99417 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2C42714F2C6F521300B99417 /* SettingsService.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		2CA5F9B12C6CDC6D00F443DD /* DI */ = {
@@ -263,7 +273,6 @@
 				2CB5C7392C660C420021DC03 /* Token.swift */,
 				2CB5C7592C6622E30021DC03 /* CurrentWeather.swift */,
 				2CA5F9B62C6CDE1C00F443DD /* Location.swift */,
-				2CB6AA182C6DDCDD00530EA4 /* GlobalSettings.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -306,6 +315,7 @@
 		2CB5C7422C660D2F0021DC03 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2C42714E2C6F520500B99417 /* Settings */,
 				2CB6AA1D2C6DEC1600530EA4 /* Audio */,
 				2CA5F9B12C6CDC6D00F443DD /* DI */,
 				2CB5C76A2C6628A50021DC03 /* Location */,
@@ -400,6 +410,7 @@
 			children = (
 				2CB6AA102C6DB88200530EA4 /* SettingsView.swift */,
 				2CB6AA122C6DB9B200530EA4 /* SettingsViewModel.swift */,
+				2C42714C2C6F50D200B99417 /* SettingsRouterView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -514,6 +525,7 @@
 				2CB6AA132C6DB9B200530EA4 /* SettingsViewModel.swift in Sources */,
 				2CA5F9CA2C6CE7D800F443DD /* MainViewRouter.swift in Sources */,
 				2CB6AA112C6DB88200530EA4 /* SettingsView.swift in Sources */,
+				2C4271502C6F521300B99417 /* SettingsService.swift in Sources */,
 				2CA5F9B52C6CDCA700F443DD /* AppDelegate.swift in Sources */,
 				2CA5F9BC2C6CDED600F443DD /* CitiesView.swift in Sources */,
 				2C1E52F42C6E0FF30039AFBD /* TemperatureUnit.swift in Sources */,
@@ -526,7 +538,6 @@
 				2CB5C78E2C664C9B0021DC03 /* LoadableView.swift in Sources */,
 				2CB5C7872C66456F0021DC03 /* ErrorView.swift in Sources */,
 				2CB5C71E2C660B8B0021DC03 /* MainView.swift in Sources */,
-				2CB6AA192C6DDCDD00530EA4 /* GlobalSettings.swift in Sources */,
 				2CB5C74F2C660E930021DC03 /* AuthAPI.swift in Sources */,
 				2CB5C7542C660F230021DC03 /* MainViewModel.swift in Sources */,
 				2C1F46FD2C6D1363006C9C40 /* LoadingView.swift in Sources */,
@@ -535,6 +546,7 @@
 				2CB5C7462C660D4C0021DC03 /* Provider.swift in Sources */,
 				2CA5F9C82C6CE62C00F443DD /* MainCoordinator.swift in Sources */,
 				2CB5C7812C663D9A0021DC03 /* BoundsEnviromentKey.swift in Sources */,
+				2C42714D2C6F50D200B99417 /* SettingsRouterView.swift in Sources */,
 				2CA5F9B32C6CDC9500F443DD /* DependencyContainer.swift in Sources */,
 				2CA5F9BE2C6CDF8200F443DD /* CitiesViewModel.swift in Sources */,
 				2C0810AF2C69C09700397477 /* DateFormatters.swift in Sources */,

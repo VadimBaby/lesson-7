@@ -11,22 +11,15 @@ import Combine
 
 final class SettingsViewModel: ObservableObject {
     let input: Input
-    @Published var output: Output
     
     private var cancellables: Set<AnyCancellable> = .init()
     
-    private let globalSettings: GlobalSettings
+    private weak var router: SettingsRouterView? = nil
     
-    init(globalSettings: GlobalSettings) {
-        self.globalSettings = globalSettings
+    init(router: SettingsRouterView?) {
+        self.router = router
         
         self.input = Input()
-        self.output = Output(
-            startGradientColor: globalSettings.startGradientColor.value,
-            endGradientColor: globalSettings.endGradientColor.value,
-            soundOnPressButtonToggle: globalSettings.soundOnPressButton.value,
-            temperatureUnit: globalSettings.temperatureUnit.value
-        )
         
         self.bind()
     }
@@ -34,31 +27,9 @@ final class SettingsViewModel: ObservableObject {
 
 private extension SettingsViewModel {
     func bind() {
-        $output
-            .map(\.startGradientColor)
-            .sink { [weak self] color in
-                self?.globalSettings.startGradientColor.send(color)
-            }
-            .store(in: &cancellables)
-        
-        $output
-            .map(\.endGradientColor)
-            .sink { [weak self] color in
-                self?.globalSettings.endGradientColor.send(color)
-            }
-            .store(in: &cancellables)
-        
-        $output
-            .map(\.soundOnPressButtonToggle)
-            .sink { [weak self] toggleValue in
-                self?.globalSettings.soundOnPressButton.send(toggleValue)
-            }
-            .store(in: &cancellables)
-        
-        $output
-            .map(\.temperatureUnit)
-            .sink { [weak self] temperatureUnit in
-                self?.globalSettings.temperatureUnit.send(temperatureUnit)
+        input.goBack
+            .sink { [weak self] in
+                self?.router?.goBack()
             }
             .store(in: &cancellables)
     }
@@ -66,13 +37,6 @@ private extension SettingsViewModel {
 
 extension SettingsViewModel {
     struct Input {
-        
-    }
-    
-    struct Output {
-        var startGradientColor: Color
-        var endGradientColor: Color
-        var soundOnPressButtonToggle: Bool
-        var temperatureUnit: TemperatureUnit
+        let goBack = PassthroughSubject<Void, Never>()
     }
 }

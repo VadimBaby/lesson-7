@@ -11,8 +11,4 @@ protocol CitiesRouteView: AnyObject {
     func goBack()
 }
 
-extension MainCoordinator: CitiesRouteView {
-    func goBack() {
-        self.popLast()
-    }
-}
+extension MainCoordinator: CitiesRouteView { }

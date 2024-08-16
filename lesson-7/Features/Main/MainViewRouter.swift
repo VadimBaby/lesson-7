@@ -9,7 +9,7 @@ import Foundation
 
 protocol MainViewRouter: AnyObject {
     func routeToCities()
-    func routeToSettings()
+    func routeToSettings(onDismiss: @escaping VoidAction)
 }
 
 extension MainCoordinator: MainViewRouter {
@@ -17,7 +17,7 @@ extension MainCoordinator: MainViewRouter {
         self.route(to: \.cities)
     }
     
-    func routeToSettings() {
-        self.route(to: \.settings)
+    func routeToSettings(onDismiss: @escaping VoidAction) {
+        self.route(to: \.settings, onDismiss: onDismiss)
     }
 }

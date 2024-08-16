@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject private var settings: SettingsService
+    
     @StateObject private var viewModel: MainViewModel
     
     init(viewModel: MainViewModel) {
@@ -36,7 +38,7 @@ private extension MainView {
             Button(
                 send: viewModel.input.onButtonPress,
                 with: .what,
-                isSoundOn: viewModel.output.settings.soundOnPressButton
+                isSoundOn: settings.soundOnPressButton
             ) {
                 Text("Выбрать город")
                     .foregroundStyle(Color.primary)
@@ -50,15 +52,15 @@ private extension MainView {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal)
         .gradientBackground(
-            start: viewModel.output.settings.startGradientColor,
-            end: viewModel.output.settings.endGradientColor
+            start: settings.startGradientColor,
+            end: settings.endGradientColor
         )
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(
                     send: viewModel.input.onGearPress,
                     with: .what,
-                    isSoundOn: viewModel.output.settings.soundOnPressButton
+                    isSoundOn: settings.soundOnPressButton
                 ) {
                     Image(systemName: "gear")
                         .foregroundStyle(Color.black)
@@ -140,8 +142,9 @@ private extension MainView {
             authService: AuthAPIService(),
             apiService: WeatherAPIService(),
             locationService: LocationService(),
-            globalSettings: GlobalSettings(),
+            settingsService: .init(),
             router: nil)
         )
     }
+    .environmentObject(SettingsService())
 }

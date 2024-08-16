@@ -22,23 +22,17 @@ final class CitiesViewModel: ObservableObject {
     
     private let citySelected: CurrentValueSubject<Location?, Never>
     
-    // MARK: - GlobalSettings
-    
-    private let globalSettings: GlobalSettings
-    
     init(
         citySelected: CurrentValueSubject<Location?, Never>,
         locationService: LocationServiceProtocol,
-        globalSettings: GlobalSettings,
         router: CitiesRouteView?
     ) {
         self.citySelected = citySelected
         self.locationService = locationService
-        self.globalSettings = globalSettings
         self.router = router
         
         self.input = Input()
-        self.output = Output(globalSettings: globalSettings)
+        self.output = Output()
         
         self.appendCurrentLocation()
         self.bind()
@@ -62,7 +56,6 @@ private extension CitiesViewModel {
             .store(in: &cancellables)
         
         bindSearch()
-        bindSettings()
     }
     
     // MARK: - Search
@@ -93,28 +86,6 @@ private extension CitiesViewModel {
             .store(in: &cancellables)
     }
     
-    // MARK: - Settings
-    
-    func bindSettings() {
-        globalSettings.startGradientColor
-            .sink { [weak self] color in
-                self?.output.settings.startGradientColor = color
-            }
-            .store(in: &cancellables)
-        
-        globalSettings.endGradientColor
-            .sink { [weak self] color in
-                self?.output.settings.endGradientColor = color
-            }
-            .store(in: &cancellables)
-        
-        globalSettings.soundOnPressButton
-            .sink { [weak self] value in
-                self?.output.settings.soundOnPressButton = value
-            }
-            .store(in: &cancellables)
-    }
-    
     func appendCurrentLocation() {
         guard let coordinate = locationService.currentLocation.value else {
             return
@@ -134,20 +105,5 @@ extension CitiesViewModel {
         var cities: [Location] = Location.mockCities
         var search: String = ""
         var currentCity: Location? = nil
-        var settings: Settings
-        
-        init(globalSettings: GlobalSettings) {
-            self.settings = .init(
-                startGradientColor: globalSettings.startGradientColor.value,
-                endGradientColor: globalSettings.endGradientColor.value,
-                soundOnPressButton: globalSettings.soundOnPressButton.value
-            )
-        }
-    }
-    
-    struct Settings {
-        var startGradientColor: Color
-        var endGradientColor: Color
-        var soundOnPressButton: Bool
     }
 }

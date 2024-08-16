@@ -22,48 +22,20 @@ final class MainCoordinator: NavigationCoordinatable {
     @Injected private var apiService: WeatherAPIService
     @Injected private var locationService: LocationService
     
-    init() {
-        self.bind()
-    }
+    private var settingsService: SettingsService
     
     private var cancellables: Set<AnyCancellable> = .init()
     
     private let citySelected = CurrentValueSubject<Location?, Never>(nil)
     
-    // MARK: - Settings
+    init(settingsService: SettingsService) {
+        self.settingsService = settingsService
+    }
     
-    private let globalSettings = GlobalSettings()
-}
-
-private extension MainCoordinator {
-    func bind() {
-        globalSettings.startGradientColor
-            .removeDuplicates()
-            .sink { color in
-                UserStorage.shared.startGradientColor = color
-            }
-            .store(in: &cancellables)
-        
-        globalSettings.endGradientColor
-            .removeDuplicates()
-            .sink { color in
-                UserStorage.shared.endGradientColor = color
-            }
-            .store(in: &cancellables)
-        
-        globalSettings.soundOnPressButton
-            .removeDuplicates()
-            .sink { value in
-                UserStorage.shared.soundOnPressButton = value
-            }
-            .store(in: &cancellables)
-        
-        globalSettings.temperatureUnit
-            .removeDuplicates()
-            .sink { value in
-                UserStorage.shared.temperatureUnit = value
-            }
-            .store(in: &cancellables)
+    // MARK: - Navigations Functions
+    
+    func goBack() {
+        self.popLast()
     }
 }
 
@@ -75,7 +47,7 @@ private extension MainCoordinator {
             authService: authService,
             apiService: apiService,
             locationService: locationService,
-            globalSettings: globalSettings,
+            settingsService: settingsService,
             router: self
         )
         MainView(viewModel: viewModel)
@@ -86,7 +58,6 @@ private extension MainCoordinator {
         let viewModel = CitiesViewModel(
             citySelected: citySelected,
             locationService: locationService,
-            globalSettings: globalSettings,
             router: self
         )
         
@@ -95,7 +66,7 @@ private extension MainCoordinator {
     
     @ViewBuilder
     func makeSettingsView() -> some View {
-        let viewModel = SettingsViewModel(globalSettings: globalSettings)
+        let viewModel = SettingsViewModel(router: self)
         SettingsView(viewModel: viewModel)
     }
 }
