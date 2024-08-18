@@ -16,15 +16,18 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         registerDependencies()
+        
         return true
     }
     
     private func registerDependencies() {
-        Dependencies {
-            Dependency { self.locationService }
-            Dependency { self.authService }
-            Dependency { self.apiService }
-            Dependency { self.settings }
-        }.build()
+        let container = DependencyContainer()
+        
+        container.register(LocationService.self, service: locationService)
+        container.register(AuthAPIService.self, service: authService)
+        container.register(WeatherAPIService.self, service: apiService)
+        container.register(SettingsService.self, service: settings)
+        
+        container.build()
     }
 }
