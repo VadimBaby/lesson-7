@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0243442C79A53B0046386E /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0243432C79A53B0046386E /* UpdateView.swift */; };
+		2C0243462C79A80A0046386E /* UpdateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0243452C79A80A0046386E /* UpdateCoordinator.swift */; };
+		2C0243492C79AA280046386E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0243482C79AA280046386E /* OnboardingView.swift */; };
+		2C02434B2C79AA4E0046386E /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02434A2C79AA4E0046386E /* OnboardingViewModel.swift */; };
+		2C02434D2C79B1E90046386E /* CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02434C2C79B1E90046386E /* CaseIterable.swift */; };
+		2C02434F2C79B4260046386E /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02434E2C79B4260046386E /* OnboardingCoordinator.swift */; };
+		2C0243522C79EE300046386E /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0243512C79EE300046386E /* AuthView.swift */; };
+		2C0243542C79EE440046386E /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0243532C79EE440046386E /* AuthViewModel.swift */; };
+		2C0243572C79F0090046386E /* PrimaryTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0243562C79F0090046386E /* PrimaryTextFieldStyle.swift */; };
+		2C0243592C79F0710046386E /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0243582C79F0710046386E /* TextField.swift */; };
+		2C02435B2C79F1230046386E /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02435A2C79F1230046386E /* AuthCoordinator.swift */; };
+		2C02435E2C79F2700046386E /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02435D2C79F2700046386E /* PrimaryButtonStyle.swift */; };
+		2C0243602C7A4F0C0046386E /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02435F2C7A4F0C0046386E /* Publisher.swift */; };
+		2C0243622C7A52290046386E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0243612C7A52290046386E /* AuthService.swift */; };
 		2C0810AF2C69C09700397477 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0810AE2C69C09700397477 /* DateFormatters.swift */; };
 		2C1E52F22C6E0FE30039AFBD /* ResponseLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E52F12C6E0FE30039AFBD /* ResponseLanguage.swift */; };
 		2C1E52F42C6E0FF30039AFBD /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E52F32C6E0FF30039AFBD /* TemperatureUnit.swift */; };
@@ -14,7 +28,10 @@
 		2C1F46FD2C6D1363006C9C40 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F46FC2C6D1363006C9C40 /* LoadingView.swift */; };
 		2C42714D2C6F50D200B99417 /* SettingsRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C42714C2C6F50D200B99417 /* SettingsRouterView.swift */; };
 		2C4271502C6F521300B99417 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C42714F2C6F521300B99417 /* SettingsService.swift */; };
-		2CA5F9B32C6CDC9500F443DD /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5F9B22C6CDC9500F443DD /* DependencyContainer.swift */; };
+		2C4C906C2C7CC11E009B9AF8 /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C906B2C7CC11E009B9AF8 /* OnboardingStep.swift */; };
+		2C630BB92C71BD39001956A4 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 2C630BB82C71BD39001956A4 /* Swinject */; };
+		2C630BBB2C71BD39001956A4 /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2C630BBA2C71BD39001956A4 /* Swinject-Dynamic */; };
+		2C630BBD2C71C0A7001956A4 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C630BBC2C71C0A7001956A4 /* DependencyContainer.swift */; };
 		2CA5F9B52C6CDCA700F443DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5F9B42C6CDCA700F443DD /* AppDelegate.swift */; };
 		2CA5F9B72C6CDE1C00F443DD /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5F9B62C6CDE1C00F443DD /* Location.swift */; };
 		2CA5F9BC2C6CDED600F443DD /* CitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5F9BB2C6CDED600F443DD /* CitiesView.swift */; };
@@ -65,6 +82,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C0243432C79A53B0046386E /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
+		2C0243452C79A80A0046386E /* UpdateCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCoordinator.swift; sourceTree = "<group>"; };
+		2C0243482C79AA280046386E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		2C02434A2C79AA4E0046386E /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		2C02434C2C79B1E90046386E /* CaseIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseIterable.swift; sourceTree = "<group>"; };
+		2C02434E2C79B4260046386E /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		2C0243512C79EE300046386E /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		2C0243532C79EE440046386E /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		2C0243562C79F0090046386E /* PrimaryTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryTextFieldStyle.swift; sourceTree = "<group>"; };
+		2C0243582C79F0710046386E /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		2C02435A2C79F1230046386E /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		2C02435D2C79F2700046386E /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		2C02435F2C7A4F0C0046386E /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
+		2C0243612C7A52290046386E /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2C0810AE2C69C09700397477 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
 		2C1E52F12C6E0FE30039AFBD /* ResponseLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseLanguage.swift; sourceTree = "<group>"; };
 		2C1E52F32C6E0FF30039AFBD /* TemperatureUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnit.swift; sourceTree = "<group>"; };
@@ -72,7 +103,8 @@
 		2C1F46FC2C6D1363006C9C40 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		2C42714C2C6F50D200B99417 /* SettingsRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouterView.swift; sourceTree = "<group>"; };
 		2C42714F2C6F521300B99417 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
-		2CA5F9B22C6CDC9500F443DD /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		2C4C906B2C7CC11E009B9AF8 /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
+		2C630BBC2C71C0A7001956A4 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		2CA5F9B42C6CDCA700F443DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CA5F9B62C6CDE1C00F443DD /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		2CA5F9BB2C6CDED600F443DD /* CitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesView.swift; sourceTree = "<group>"; };
@@ -124,7 +156,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CB5C72E2C660BD00021DC03 /* Moya in Frameworks */,
+				2C630BBB2C71BD39001956A4 /* Swinject-Dynamic in Frameworks */,
 				2CB5C72C2C660BD00021DC03 /* CombineMoya in Frameworks */,
+				2C630BB92C71BD39001956A4 /* Swinject in Frameworks */,
 				2CB5C7322C660BD00021DC03 /* RxMoya in Frameworks */,
 				2CA5F9C32C6CE5CC00F443DD /* Stinsen in Frameworks */,
 				2CB5C7352C660BE60021DC03 /* CombineExt in Frameworks */,
@@ -135,6 +169,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0243422C79A50A0046386E /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				2C0243432C79A53B0046386E /* UpdateView.swift */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
+		2C0243472C79AA1C0046386E /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2C0243482C79AA280046386E /* OnboardingView.swift */,
+				2C02434A2C79AA4E0046386E /* OnboardingViewModel.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		2C0243502C79EE260046386E /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				2C0243512C79EE300046386E /* AuthView.swift */,
+				2C0243532C79EE440046386E /* AuthViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		2C0243552C79EFE30046386E /* TextFieldStyles */ = {
+			isa = PBXGroup;
+			children = (
+				2C0243562C79F0090046386E /* PrimaryTextFieldStyle.swift */,
+			);
+			path = TextFieldStyles;
+			sourceTree = "<group>";
+		};
+		2C02435C2C79F2630046386E /* ButtonStyles */ = {
+			isa = PBXGroup;
+			children = (
+				2C02435D2C79F2700046386E /* PrimaryButtonStyle.swift */,
+			);
+			path = ButtonStyles;
+			sourceTree = "<group>";
+		};
 		2C1E52F02C6E0FD60039AFBD /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,10 +228,18 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		2C4C906A2C7CC10A009B9AF8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2C4C906B2C7CC11E009B9AF8 /* OnboardingStep.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		2CA5F9B12C6CDC6D00F443DD /* DI */ = {
 			isa = PBXGroup;
 			children = (
-				2CA5F9B22C6CDC9500F443DD /* DependencyContainer.swift */,
+				2C630BBC2C71C0A7001956A4 /* DependencyContainer.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -163,6 +247,10 @@
 		2CA5F9B82C6CDE4E00F443DD /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				2C4C906A2C7CC10A009B9AF8 /* Data */,
+				2C0243502C79EE260046386E /* Auth */,
+				2C0243472C79AA1C0046386E /* Onboarding */,
+				2C0243422C79A50A0046386E /* Update */,
 				2CB6AA0F2C6DB87600530EA4 /* Settings */,
 				2CA5F9BA2C6CDECC00F443DD /* Cities */,
 				2CA5F9B92C6CDE6E00F443DD /* Main */,
@@ -195,6 +283,9 @@
 			children = (
 				2CA5F9C52C6CE5F400F443DD /* BaseCoordinator.swift */,
 				2CA5F9C72C6CE62C00F443DD /* MainCoordinator.swift */,
+				2C0243452C79A80A0046386E /* UpdateCoordinator.swift */,
+				2C02434E2C79B4260046386E /* OnboardingCoordinator.swift */,
+				2C02435A2C79F1230046386E /* AuthCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -298,6 +389,9 @@
 				2CA5F9BF2C6CE13700F443DD /* Button.swift */,
 				2C1F46FA2C6D0E1C006C9C40 /* View.swift */,
 				2CB6AA162C6DD7B400530EA4 /* UserDefaults.swift */,
+				2C02434C2C79B1E90046386E /* CaseIterable.swift */,
+				2C0243582C79F0710046386E /* TextField.swift */,
+				2C02435F2C7A4F0C0046386E /* Publisher.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -340,6 +434,7 @@
 			children = (
 				2CB5C7472C660D610021DC03 /* AuthEndpoint.swift */,
 				2CB5C74E2C660E930021DC03 /* AuthAPI.swift */,
+				2C0243612C7A52290046386E /* AuthService.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -365,6 +460,8 @@
 		2CB5C75B2C6623660021DC03 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2C02435C2C79F2630046386E /* ButtonStyles */,
+				2C0243552C79EFE30046386E /* TextFieldStyles */,
 				2CB5C75D2C6623750021DC03 /* Components */,
 			);
 			path = UI;
@@ -454,6 +551,8 @@
 				2CB5C7312C660BD00021DC03 /* RxMoya */,
 				2CB5C7342C660BE60021DC03 /* CombineExt */,
 				2CA5F9C22C6CE5CC00F443DD /* Stinsen */,
+				2C630BB82C71BD39001956A4 /* Swinject */,
+				2C630BBA2C71BD39001956A4 /* Swinject-Dynamic */,
 			);
 			productName = "lesson-7";
 			productReference = 2CB5C7182C660B8B0021DC03 /* lesson-7.app */;
@@ -488,6 +587,7 @@
 				2CB5C72A2C660BD00021DC03 /* XCRemoteSwiftPackageReference "Moya" */,
 				2CB5C7332C660BE60021DC03 /* XCRemoteSwiftPackageReference "CombineExt" */,
 				2CA5F9C12C6CE5CC00F443DD /* XCRemoteSwiftPackageReference "stinsen" */,
+				2C630BB72C71BD39001956A4 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 2CB5C7192C660B8B0021DC03 /* Products */;
 			projectDirPath = "";
@@ -518,36 +618,44 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CB5C7562C661C690021DC03 /* KeychainManager.swift in Sources */,
+				2C02434D2C79B1E90046386E /* CaseIterable.swift in Sources */,
 				2CB5C73C2C660C4E0021DC03 /* ServerToken.swift in Sources */,
 				2CB5C7582C6622D20021DC03 /* ServerCurrentWeather.swift in Sources */,
 				2CA5F9C02C6CE13700F443DD /* Button.swift in Sources */,
 				2CB5C7482C660D610021DC03 /* AuthEndpoint.swift in Sources */,
+				2C02434B2C79AA4E0046386E /* OnboardingViewModel.swift in Sources */,
 				2CB6AA132C6DB9B200530EA4 /* SettingsViewModel.swift in Sources */,
 				2CA5F9CA2C6CE7D800F443DD /* MainViewRouter.swift in Sources */,
 				2CB6AA112C6DB88200530EA4 /* SettingsView.swift in Sources */,
+				2C0243572C79F0090046386E /* PrimaryTextFieldStyle.swift in Sources */,
 				2C4271502C6F521300B99417 /* SettingsService.swift in Sources */,
 				2CA5F9B52C6CDCA700F443DD /* AppDelegate.swift in Sources */,
+				2C0243622C7A52290046386E /* AuthService.swift in Sources */,
 				2CA5F9BC2C6CDED600F443DD /* CitiesView.swift in Sources */,
 				2C1E52F42C6E0FF30039AFBD /* TemperatureUnit.swift in Sources */,
 				2CB5C7402C660CB80021DC03 /* Optional.swift in Sources */,
+				2C0243462C79A80A0046386E /* UpdateCoordinator.swift in Sources */,
+				2C02434F2C79B4260046386E /* OnboardingCoordinator.swift in Sources */,
 				2C1F46FB2C6D0E1C006C9C40 /* View.swift in Sources */,
 				2CB5C7522C660ED00021DC03 /* Combiner.swift in Sources */,
 				2CB6AA172C6DD7B400530EA4 /* UserDefaults.swift in Sources */,
 				2CB5C73A2C660C420021DC03 /* Token.swift in Sources */,
 				2CB6AA152C6DD73A00530EA4 /* UserStorage.swift in Sources */,
+				2C0243592C79F0710046386E /* TextField.swift in Sources */,
 				2CB5C78E2C664C9B0021DC03 /* LoadableView.swift in Sources */,
 				2CB5C7872C66456F0021DC03 /* ErrorView.swift in Sources */,
+				2C0243602C7A4F0C0046386E /* Publisher.swift in Sources */,
 				2CB5C71E2C660B8B0021DC03 /* MainView.swift in Sources */,
 				2CB5C74F2C660E930021DC03 /* AuthAPI.swift in Sources */,
 				2CB5C7542C660F230021DC03 /* MainViewModel.swift in Sources */,
 				2C1F46FD2C6D1363006C9C40 /* LoadingView.swift in Sources */,
+				2C630BBD2C71C0A7001956A4 /* DependencyContainer.swift in Sources */,
 				2C1E52F22C6E0FE30039AFBD /* ResponseLanguage.swift in Sources */,
 				2CB5C75A2C6622E30021DC03 /* CurrentWeather.swift in Sources */,
 				2CB5C7462C660D4C0021DC03 /* Provider.swift in Sources */,
 				2CA5F9C82C6CE62C00F443DD /* MainCoordinator.swift in Sources */,
 				2CB5C7812C663D9A0021DC03 /* BoundsEnviromentKey.swift in Sources */,
 				2C42714D2C6F50D200B99417 /* SettingsRouterView.swift in Sources */,
-				2CA5F9B32C6CDC9500F443DD /* DependencyContainer.swift in Sources */,
 				2CA5F9BE2C6CDF8200F443DD /* CitiesViewModel.swift in Sources */,
 				2C0810AF2C69C09700397477 /* DateFormatters.swift in Sources */,
 				2CB5C76F2C662D2B0021DC03 /* WeatherEndpoint.swift in Sources */,
@@ -555,12 +663,19 @@
 				2CB5C7832C663DAE0021DC03 /* EnviromentValues.swift in Sources */,
 				2CB5C77E2C663D5C0021DC03 /* UIApplication.swift in Sources */,
 				2CB5C74D2C660DD80021DC03 /* APISecureKeys.swift in Sources */,
+				2C0243522C79EE300046386E /* AuthView.swift in Sources */,
 				2CA5F9B72C6CDE1C00F443DD /* Location.swift in Sources */,
+				2C02435B2C79F1230046386E /* AuthCoordinator.swift in Sources */,
+				2C0243542C79EE440046386E /* AuthViewModel.swift in Sources */,
 				2CB5C7712C662D3F0021DC03 /* WeatherAPI.swift in Sources */,
 				2CA5F9CC2C6CE84900F443DD /* CitiesRouteView.swift in Sources */,
+				2C0243442C79A53B0046386E /* UpdateView.swift in Sources */,
+				2C02435E2C79F2700046386E /* PrimaryButtonStyle.swift in Sources */,
 				2CB5C76C2C6628AE0021DC03 /* LocationService.swift in Sources */,
 				2CB5C71C2C660B8B0021DC03 /* lesson_7App.swift in Sources */,
+				2C0243492C79AA280046386E /* OnboardingView.swift in Sources */,
 				2CA5F9C62C6CE5F400F443DD /* BaseCoordinator.swift in Sources */,
+				2C4C906C2C7CC11E009B9AF8 /* OnboardingStep.swift in Sources */,
 				2CB6AA1F2C6DEC2C00530EA4 /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -789,6 +904,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2C630BB72C71BD39001956A4 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
 		2CA5F9C12C6CE5CC00F443DD /* XCRemoteSwiftPackageReference "stinsen" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rundfunk47/stinsen.git";
@@ -816,6 +939,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2C630BB82C71BD39001956A4 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C630BB72C71BD39001956A4 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		2C630BBA2C71BD39001956A4 /* Swinject-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C630BB72C71BD39001956A4 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = "Swinject-Dynamic";
+		};
 		2CA5F9C22C6CE5CC00F443DD /* Stinsen */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2CA5F9C12C6CE5CC00F443DD /* XCRemoteSwiftPackageReference "stinsen" */;

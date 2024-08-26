@@ -139,7 +139,6 @@ private extension MainView {
     NavigationView {
         MainView(viewModel: .init(
             citySelected: .init(nil),
-            authService: AuthAPIService(),
             apiService: WeatherAPIService(),
             locationService: LocationService(),
             settingsService: .init(),

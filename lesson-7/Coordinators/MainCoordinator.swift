@@ -18,7 +18,6 @@ final class MainCoordinator: NavigationCoordinatable {
     @Route(.modal) var cities = makeCitiesView
     @Route(.fullScreen) var settings = makeSettingsView
     
-    @Injected private var authService: AuthAPIService
     @Injected private var apiService: WeatherAPIService
     @Injected private var locationService: LocationService
     
@@ -44,7 +43,6 @@ private extension MainCoordinator {
     func makeMainView() -> some View {
         let viewModel = MainViewModel(
             citySelected: citySelected,
-            authService: authService,
             apiService: apiService,
             locationService: locationService,
             settingsService: settingsService,

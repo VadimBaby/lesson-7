@@ -16,6 +16,14 @@ extension Optional where Wrapped == String {
         guard let self else { return false }
         return !self.isEmpty
     }
+    
+    var isNil: Bool {
+        self == nil
+    }
+    
+    var isNotNil: Bool {
+        self != nil
+    }
 }
  
 extension Optional where Wrapped: BinaryFloatingPoint {

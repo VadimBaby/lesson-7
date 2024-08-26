@@ -1,69 +1,44 @@
 //
-//  DependencyContainer.swift
+//  DIContainer.swift
 //  lesson-7
 //
-//  Created by Вадим Мартыненко on 14.08.2024.
+//  Created by Вадим Мартыненко on 18.08.2024.
 //
 
 import Foundation
+import Swinject
 
-struct Dependency {
+final class DependencyContainer {
+    private let container: Swinject.Container = .init()
     
-    typealias ResolveBlock<T> = () -> T
-
-    private(set) var value: Any!
-    private let resolveBlock: ResolveBlock<Any>
-    let name: String
-
-    init<T>(_ block: @escaping ResolveBlock<T>) {
-        resolveBlock = block
-        name = String(describing: T.self)
+    static private(set) var shared = DependencyContainer()
+    
+    func register<Service>(
+        _ serviceType: Service.Type,
+        name: String? = nil,
+        factory: @escaping (Resolver) -> Service
+    ) {
+        container.register(serviceType, name: name, factory: factory)
     }
-    mutating func resolve() {
-        value = resolveBlock()
-    }
-}
-
-class Dependencies {
-    @resultBuilder struct DependencyBuilder {
-        static func buildBlock(_ dependency: Dependency) -> Dependency { dependency }
-        static func buildBlock(_ dependencies: Dependency...) -> [Dependency] { dependencies }
-    }
-
-    convenience init(@DependencyBuilder _ dependencies: () -> [Dependency]) {
-        self.init()
-        dependencies().forEach { register($0) }
-    }
-
-    convenience init(@DependencyBuilder _ dependency: () -> Dependency) {
-        self.init()
-        register(dependency())
-    }
-
-    static private(set) var shared = Dependencies()
-
-    fileprivate var dependencies = [Dependency]()
-
-    func register(_ dependency: Dependency) {
-        guard dependencies.firstIndex(where: { $0.name == dependency.name }) == nil else {
-            debugPrint("\(String(describing: dependency.name)) already registered, ignoring")
-            return
+    
+    func register<Service>(_ serviceType: Service.Type, service: Service) {
+        container.register(serviceType) { _ in
+            service
         }
-        dependencies.append(dependency)
     }
-
-    func build() {
-        for index in dependencies.startIndex..<dependencies.endIndex {
-            dependencies[index].resolve()
-        }
-        Self.shared = self
+    
+    func resolve<Service>(_ serviceType: Service.Type, name: String? = nil) -> Service? {
+        container.resolve(serviceType, name: name)
     }
-
+    
     func resolve<T>() -> T {
-        guard let dependency = dependencies.first(where: { $0.value is T })?.value as? T else {
-            fatalError("Can't resolve \(T.self)")
-        }
+        guard let dependency = container.resolve(T.self) else { fatalError("Can't resolve \(T.self)") }
+        
         return dependency
+    }
+    
+    func build() {
+        Self.shared = self
     }
 }
 
@@ -75,7 +50,7 @@ struct Injected<Dependency> {
     var wrappedValue: Dependency {
         mutating get {
             if dependency == nil {
-                let copy: Dependency = Dependencies.shared.resolve()
+                let copy: Dependency = DependencyContainer.shared.resolve()
                 self.dependency = copy
             }
             return dependency
@@ -85,3 +60,4 @@ struct Injected<Dependency> {
         }
     }
 }
+

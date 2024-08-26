@@ -16,10 +16,22 @@ enum LoadableViewState: Equatable {
 struct LoadableView<Content: View>: View {
     @Environment(\.bounds) private var bounds: CGRect
     
-    let state: LoadableViewState
-    let content: () -> Content
-    let onAppear: VoidAction
-    let onReload: VoidAction
+    private let state: LoadableViewState
+    private let content: () -> Content
+    private let onAppear: VoidAction
+    private let onReload: VoidAction
+    
+    init(
+        state: LoadableViewState,
+        content: @escaping () -> Content,
+        onAppear: @escaping VoidAction = {},
+        onReload: @escaping VoidAction = {}
+    ) {
+        self.state = state
+        self.content = content
+        self.onAppear = onAppear
+        self.onReload = onReload
+    }
     
     var body: some View {
         Group {

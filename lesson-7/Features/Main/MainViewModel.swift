@@ -15,7 +15,6 @@ final class MainViewModel: Combiner, ObservableObject {
     let input: Input
     @Published var output: Output
     
-    private let authService: AuthAPIServiceContainable
     private let apiService: CurrentWeaherContainable
     private let locationService: LocationServiceProtocol
     private var settingsService: SettingsService
@@ -26,12 +25,8 @@ final class MainViewModel: Combiner, ObservableObject {
     // MARK: - External
     private let citySelected: CurrentValueSubject<Location?, Never>
     
-    // MARK: - Helpers
-    private let onAuthComplete = PassthroughSubject<Void, Never>()
-    
     init(
         citySelected: CurrentValueSubject<Location?, Never>,
-        authService: AuthAPIServiceContainable,
         apiService: CurrentWeaherContainable,
         locationService: LocationServiceProtocol,
         settingsService: SettingsService,
@@ -39,7 +34,6 @@ final class MainViewModel: Combiner, ObservableObject {
     ) {
         self.citySelected = citySelected
         self.router = router
-        self.authService = authService
         self.apiService = apiService
         self.locationService = locationService
         self.settingsService = settingsService
@@ -61,70 +55,19 @@ private extension MainViewModel {
             }
             .store(in: &cancellables)
         
-        onAuthComplete
+        input.onAppear
             .sink { [weak self] in
                 self?.locationService.requestLocation()
             }
             .store(in: &cancellables)
         
-        bindAuth()
         bindWeather()
         bindNavigation()
-    }
-    
-    // MARK: - Auth
-    
-    func bindAuth() {
-        input.onAppear
-            .first()
-            .merge(with: input.onReload)
-            .filter {
-                KeychainManager.shared.token.isNotNilOrEmpty
-            }
-            .sink { [weak self] in
-                self?.onAuthComplete.send()
-            }
-            .store(in: &cancellables)
-        
-        let request = input.onAppear
-            .first()
-            .merge(with: input.onReload)
-            .filter {
-                !KeychainManager.shared.token.isNotNilOrEmpty
-            }
-            .map { [unowned self] in
-                self.authService.postToken().materialize()
-            }
-            .switchToLatest()
-            .share()
-            .eraseToAnyPublisher()
-        
-        request
-            .values()
-            .print()
-            .sink { [weak self] in
-                KeychainManager.shared.token = $0.accessToken
-                self?.onAuthComplete.send()
-            }
-            .store(in: &cancellables)
-        
-        request
-            .failures()
-            .sink { [weak self] error in
-                self?.output.contentState = .error(message: error.localizedDescription)
-            }
-            .store(in: &cancellables)
     }
     
     // MARK: - Weather
     
     func bindWeather() {
-        input.onAppear
-            .sink {
-                print("on appear")
-            }
-            .store(in: &cancellables)
-        
         let weatherRequest = locationService.currentLocation
             .combineLatest(citySelected)
             .map {
@@ -133,7 +76,7 @@ private extension MainViewModel {
                 return $0.1?.coordinate
             }
             .compactMap{ $0 }
-            .combineLatest(onAuthComplete)
+            .combineLatest(input.onAppear)
             .print()
             .map(\.0)
             .map { [unowned self] location in
@@ -163,10 +106,7 @@ private extension MainViewModel {
         settingsService.$temperatureUnit
             .removeDuplicates()
             .zip(input.onSettingsDisappear)
-            .mapToVoid()
-            .sink { [weak self] in
-                self?.onAuthComplete.send()
-            }
+            .sink(send: input.onAppear)
             .store(in: &cancellables)
     }
     
