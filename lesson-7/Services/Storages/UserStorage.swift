@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 enum UserStorageKey: String {
-    case startGradientColor, endGradientColor, soundOnPressButton, temperatureUnit
+    case startGradientColor, endGradientColor, soundOnPressButton, temperatureUnit, isOnboardingDone
 }
 
 final class UserStorage {
@@ -56,6 +56,14 @@ final class UserStorage {
         }
         set {
             storage.setValue(newValue.rawValue, forKey: UserStorageKey.temperatureUnit.rawValue)
+        }
+    }
+    
+    var isOnboardingDone: Bool {
+        get {
+            storage.bool(forKey: UserStorageKey.isOnboardingDone.rawValue)
+        } set {
+            storage.setValue(newValue, forKey: UserStorageKey.isOnboardingDone.rawValue)
         }
     }
     

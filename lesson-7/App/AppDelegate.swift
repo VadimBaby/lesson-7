@@ -10,7 +10,8 @@ import SwiftUI
 final class AppDelegate: NSObject, UIApplicationDelegate {
     
     private let locationService = LocationService()
-    private let authService = AuthAPIService()
+    private let authAPIService = AuthAPIService()
+    private lazy var authService = AuthService(apiService: authAPIService)
     private let apiService = WeatherAPIService()
     private var settings = SettingsService()
     
@@ -24,9 +25,10 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         let container = DependencyContainer()
         
         container.register(LocationService.self, service: locationService)
-        container.register(AuthAPIService.self, service: authService)
+        container.register(AuthAPIService.self, service: authAPIService)
         container.register(WeatherAPIService.self, service: apiService)
         container.register(SettingsService.self, service: settings)
+        container.register(AuthService.self, service: authService)
         
         container.build()
     }

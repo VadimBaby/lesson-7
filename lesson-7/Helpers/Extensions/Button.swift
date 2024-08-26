@@ -8,9 +8,15 @@
 import SwiftUI
 import Combine
 
+// MARK: - Custom Inits
+
 extension Button {
     init(send: PassthroughSubject<Void, Never>, label: () -> Label) {
         self.init(action: send.send, label: label)
+    }
+    
+    init(_ titleKey: String, send: PassthroughSubject<Void, Never>) where Label == Text {
+        self.init(titleKey, action: { send.send() })
     }
     
     init<T>(send: PassthroughSubject<T, Never>, model: T, label: () -> Label) {
@@ -73,3 +79,12 @@ extension Button {
     }
 }
 
+// MARK: - Custom Functions
+
+extension Button {
+    func primaryButton(color: Color, disabled: Bool = false) -> some View {
+        self
+            .disabled(disabled)
+            .buttonStyle(PrimaryButtonStyle(color: color, disabled: disabled))
+    }
+}
