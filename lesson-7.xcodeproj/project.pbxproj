@@ -28,6 +28,7 @@
 		2C1F46FD2C6D1363006C9C40 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F46FC2C6D1363006C9C40 /* LoadingView.swift */; };
 		2C42714D2C6F50D200B99417 /* SettingsRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C42714C2C6F50D200B99417 /* SettingsRouterView.swift */; };
 		2C4271502C6F521300B99417 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C42714F2C6F521300B99417 /* SettingsService.swift */; };
+		2C4C906C2C7CC11E009B9AF8 /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C906B2C7CC11E009B9AF8 /* OnboardingStep.swift */; };
 		2C630BB92C71BD39001956A4 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 2C630BB82C71BD39001956A4 /* Swinject */; };
 		2C630BBB2C71BD39001956A4 /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2C630BBA2C71BD39001956A4 /* Swinject-Dynamic */; };
 		2C630BBD2C71C0A7001956A4 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C630BBC2C71C0A7001956A4 /* DependencyContainer.swift */; };
@@ -102,6 +103,7 @@
 		2C1F46FC2C6D1363006C9C40 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		2C42714C2C6F50D200B99417 /* SettingsRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouterView.swift; sourceTree = "<group>"; };
 		2C42714F2C6F521300B99417 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		2C4C906B2C7CC11E009B9AF8 /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
 		2C630BBC2C71C0A7001956A4 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		2CA5F9B42C6CDCA700F443DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CA5F9B62C6CDE1C00F443DD /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -226,6 +228,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		2C4C906A2C7CC10A009B9AF8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2C4C906B2C7CC11E009B9AF8 /* OnboardingStep.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		2CA5F9B12C6CDC6D00F443DD /* DI */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +247,7 @@
 		2CA5F9B82C6CDE4E00F443DD /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				2C4C906A2C7CC10A009B9AF8 /* Data */,
 				2C0243502C79EE260046386E /* Auth */,
 				2C0243472C79AA1C0046386E /* Onboarding */,
 				2C0243422C79A50A0046386E /* Update */,
@@ -664,6 +675,7 @@
 				2CB5C71C2C660B8B0021DC03 /* lesson_7App.swift in Sources */,
 				2C0243492C79AA280046386E /* OnboardingView.swift in Sources */,
 				2CA5F9C62C6CE5F400F443DD /* BaseCoordinator.swift in Sources */,
+				2C4C906C2C7CC11E009B9AF8 /* OnboardingStep.swift in Sources */,
 				2CB6AA1F2C6DEC2C00530EA4 /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

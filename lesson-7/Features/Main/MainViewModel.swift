@@ -106,7 +106,7 @@ private extension MainViewModel {
         settingsService.$temperatureUnit
             .removeDuplicates()
             .zip(input.onSettingsDisappear)
-            .send(input.onAppear)
+            .sink(send: input.onAppear)
             .store(in: &cancellables)
     }
     

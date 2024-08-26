@@ -19,11 +19,11 @@ extension Publisher {
 }
 
 extension Publisher where Failure == Never {
-    func send(_ value: PassthroughSubject<Void, Never>) -> AnyCancellable {
+    func sink(send: PassthroughSubject<Void, Never>) -> AnyCancellable {
         self
             .mapToVoid()
             .sink {
-                value.send()
+                send.send()
             }
     }
 }

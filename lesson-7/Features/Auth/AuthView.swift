@@ -19,7 +19,6 @@ struct AuthView: View {
         LoadableView(
             state: viewModel.output.contentState,
             content: content,
-            onAppear: {},
             onReload: viewModel.input.onPress.send
         )
     }
